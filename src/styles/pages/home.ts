@@ -6,8 +6,37 @@ export const HomeContainer = styled('main', {
   // gap: '3rem',
   width: '100%',
   maxWidth: 'calc(100vw - ((100vw - 1180px) / 2))',
-  marginLeft: 'auto',
+  margin: '0 auto',
   minHeight: 656,
+  position: 'relative',
+
+  '.arrow': {
+    width: '4%',
+    position: 'absolute',
+    zIndex: 10,
+    height: '100%',
+    border: 'none',
+    cursor: 'pointer',
+
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+
+  '.arrow:disabled': {
+    opacity: 0.5,
+    cursor: 'not-allowed',
+  },
+
+  '.arrow-left': {
+    background: 'linear-gradient(270deg, transparent 0%, $gray900 120%)',
+    left: 0,
+  },
+
+  '.arrow-right': {
+    background: 'linear-gradient(90deg, transparent 0%, $gray900 120%)',
+    right: 0,
+  },
 })
 
 export const Product = styled('div', {

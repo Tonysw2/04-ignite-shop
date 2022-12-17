@@ -4,8 +4,10 @@ import { GetStaticProps } from 'next'
 import Head from 'next/head'
 import Image from 'next/image'
 import Link from 'next/link'
+import { useState } from 'react'
 
 import Stripe from 'stripe'
+import { Arrow } from '../components/Arrow'
 import { stripe } from '../lib/stripe'
 
 import { HomeContainer, Product } from '../styles/pages/home'
@@ -20,7 +22,16 @@ interface HomeProps {
 }
 
 export default function Home({ products }: HomeProps) {
-  const [sliderRef] = useKeenSlider({
+  const [currentSlide, setCurrentSlide] = useState(0)
+  const [loaded, setLoaded] = useState(false)
+  const [sliderRef, instanceRef] = useKeenSlider({
+    initial: 0,
+    slideChanged(slider) {
+      setCurrentSlide(slider.track.details.rel)
+    },
+    created() {
+      setLoaded(true)
+    },
     slides: {
       perView: 3,
       spacing: 48,
@@ -34,10 +45,38 @@ export default function Home({ products }: HomeProps) {
       </Head>
 
       <HomeContainer ref={sliderRef} className="keen-slider">
+        {loaded && instanceRef.current && (
+          <>
+            <Arrow
+              direction="left"
+              onClick={(e) => {
+                e.stopPropagation() || instanceRef.current?.prev()
+              }}
+              isDisabled={currentSlide === 0}
+            />
+            <Arrow
+              direction="right"
+              onClick={(e) => {
+                e.stopPropagation() || instanceRef.current?.next()
+              }}
+              isDisabled={
+                currentSlide ===
+                Math.floor(
+                  (instanceRef.current.track.details.slides.length - 1) / 3,
+                )
+              }
+            />
+          </>
+        )}
+
         {products.map((product) => {
           return (
-            <Link href={`/product/${product.id}`} key={product.id}>
-              <Product className="keen-slider__slide">
+            <Link
+              href={`/product/${product.id}`}
+              key={product.id}
+              className="keen-slider__slide"
+            >
+              <Product>
                 <Image src={product.imageUrl} width={520} height={480} alt="" />
 
                 <footer>
