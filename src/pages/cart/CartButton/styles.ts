@@ -1,12 +1,37 @@
 import { styled } from '@stitches/react'
 
+export const ButtonContainer = styled('div', {
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+
+  '& > button': {
+    backgroundColor: 'inherit',
+    border: 'none',
+
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+
+  '& > button:disabled': {
+    filter: 'brightness(0.5)',
+    cursor: 'not-allowed',
+  },
+
+  '& > button:not(:disabled):hover': {
+    transition: 'all 0.2s',
+    filter: 'brightness(1.5)',
+    cursor: 'pointer',
+  },
+})
+
 export const IconContainer = styled('div', {
   maxHeight: 48,
   maxWidth: 48,
   padding: '0.75rem',
   backgroundColor: '$gray800 !important',
   borderRadius: 6,
-  cursor: 'pointer',
   position: 'relative',
   color: '$gray100',
 
