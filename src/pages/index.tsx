@@ -7,7 +7,7 @@ import Link from 'next/link'
 import { useState } from 'react'
 
 import Stripe from 'stripe'
-import { Arrow } from '../components/Arrow'
+import { Arrow } from '../components/Arrow/Arrow'
 import { stripe } from '../lib/stripe'
 
 import { HomeContainer, Product } from '../styles/pages/home'
