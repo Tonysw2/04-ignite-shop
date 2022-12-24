@@ -1,5 +1,6 @@
 import * as Dialog from '@radix-ui/react-dialog'
 import axios from 'axios'
+import Image from 'next/image'
 import { X } from 'phosphor-react'
 import { useContext, useState } from 'react'
 import { CartContext } from '../../contexts/CartContext'
@@ -12,7 +13,7 @@ import {
   ListContainer,
 } from './styles'
 
-export function Cart() {
+export default function Cart() {
   const { cart, removeFromCart } = useContext(CartContext)
   const [isCreatingCheckoutSession, setIsCreatingCheckoutSession] =
     useState(false)
@@ -27,7 +28,6 @@ export function Cart() {
           quantity: 1,
         }
       })
-      console.log(checkoutItems)
 
       const response = await axios.post('/api/checkout', { checkoutItems })
       const { checkoutUrl } = response.data
@@ -52,7 +52,12 @@ export function Cart() {
                 return (
                   <li key={product.id}>
                     <ImageContainer>
-                      <img src={product.imageUrl} alt="" />
+                      <Image
+                        src={product.imageUrl}
+                        width={95}
+                        height={95}
+                        alt=""
+                      />
                     </ImageContainer>
 
                     <DetailsContainer>

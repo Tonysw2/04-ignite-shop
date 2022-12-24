@@ -1,30 +1,7 @@
+import * as Dialog from '@radix-ui/react-dialog'
 import { styled } from '@stitches/react'
 
-export const ButtonContainer = styled('div', {
-  display: 'flex',
-  alignItems: 'center',
-  justifyContent: 'center',
-
-  '& > button': {
-    backgroundColor: 'inherit',
-    border: 'none',
-
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-
-  '& > button:disabled': {
-    filter: 'brightness(0.5)',
-    cursor: 'not-allowed',
-  },
-
-  '& > button:not(:disabled):hover': {
-    transition: 'all 0.2s',
-    filter: 'brightness(1.5)',
-    cursor: 'pointer',
-  },
-})
+export const ButtonContainer = styled('div', {})
 
 export const IconContainer = styled('div', {
   maxHeight: 48,
@@ -53,5 +30,25 @@ export const IconContainer = styled('div', {
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
+  },
+})
+
+export const CartButtonContainer = styled(Dialog.Trigger, {
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+  backgroundColor: 'inherit',
+  border: 'none',
+
+  '&:disabled': {
+    filter: 'brightness(0.75)',
+    color: '$gray200',
+    cursor: 'not-allowed',
+  },
+
+  '&:not(:disabled):hover': {
+    transition: 'all 0.2s',
+    filter: 'brightness(1.3)',
+    cursor: 'pointer',
   },
 })

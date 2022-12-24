@@ -3,11 +3,11 @@ import type { AppProps } from 'next/app'
 import Image from 'next/image'
 import Link from 'next/link'
 import LogoImg from '../assets/Logo.svg'
+import Cart from '../components/Cart'
+import CartButton from '../components/CartButton'
 import { CartContextProvider } from '../contexts/CartContext'
 import { globalStyles } from '../styles/global'
 import { Container, Header } from '../styles/pages/app'
-import { Cart } from './cart'
-import { CartButton } from './cart/CartButton'
 
 globalStyles()
 
