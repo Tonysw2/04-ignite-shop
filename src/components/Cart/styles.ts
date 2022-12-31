@@ -28,6 +28,7 @@ export const ListContainer = styled('ul', {
   listStyle: 'none',
   marginTop: 32,
   maxHeight: 350,
+  height: '100%',
   overflowY: 'auto',
 
   display: 'flex',
@@ -35,7 +36,13 @@ export const ListContainer = styled('ul', {
   gap: 24,
 
   '&::-webkit-scrollbar': {
-    width: 0,
+    width: 5,
+    borderRadius: 8,
+  },
+
+  '&::-webkit-scrollbar-thumb': {
+    borderRadius: 8,
+    backgroundColor: '$gray900',
   },
 
   '& > li': {
