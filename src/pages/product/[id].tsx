@@ -4,7 +4,7 @@ import Image from 'next/image'
 import { useRouter } from 'next/router'
 import { useContext } from 'react'
 import Stripe from 'stripe'
-import { Loading } from '../../components/Loading'
+import { ProductSkeleton } from '../../components/ProductSkeleton'
 import { CartContext } from '../../contexts/CartContext'
 import { stripe } from '../../lib/stripe'
 import {
@@ -29,7 +29,7 @@ export default function Product({ product }: ProductProps) {
   const { isFallback } = useRouter()
 
   if (isFallback) {
-    return <Loading />
+    return <ProductSkeleton />
   }
 
   function handleAddToCart() {
